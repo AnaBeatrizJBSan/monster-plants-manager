@@ -1,11 +1,11 @@
-import { HabboPublicAPI, Hotel, UserTargetKind } from "wired-api-wrapper-node";
+import { HabboPublicAPI, Hotel, OrderBy, OrderDir, UserTargetKind } from "wired-api-wrapper-node";
 
 import type { MonsterPlant } from "@/types/monster-plant";
 
 const readKey = process.env.HABBO_WIRED_READ_KEY;
 const writeKey = process.env.HABBO_WIRED_WRITE_KEY;
-const hotel = (process.env.EXPO_PUBLIC_HABBO_HOTEL ?? "com") as keyof typeof Hotel;
-const roomId = process.env.EXPO_PUBLIC_HABBO_ROOM_ID;
+const hotel = (process.env.EXPO_PUBLIC_HABBO_HOTEL ?? "br") as keyof typeof Hotel;
+const roomId = process.env.EXPO_PUBLIC_HABBO_ROOM_ID ?? "153844031";
 const wellbeingVariableName = "remaining_wellbeing";
 const holdersPageSize = 50;
 
@@ -40,8 +40,8 @@ export async function fetchMonsterPlantsFromHabbo(): Promise<MonsterPlant[]> {
       petsApi.listHolders(
         wellbeingVariableName,
         UserTargetKind.Pets,
-        undefined,
-        undefined,
+        OrderBy.Value,
+        OrderDir.Ascending,
         pageIndex + 1,
         holdersPageSize,
       ),

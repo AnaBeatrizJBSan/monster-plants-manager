@@ -6,7 +6,10 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
-    "plugins": ["expo-router"],
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
     "experiments": {
       "typedRoutes": true
     },
@@ -19,7 +22,15 @@
       }
     },
     "web": {
-      "bundler": "metro"
-    }
+      "bundler": "metro",
+      "output": "server"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "fefc6153-b8ba-4cf3-9ce9-b94d1f8679e0"
+      }
+    },
+    "owner": "anabeatrizjbsan"
   }
 }
