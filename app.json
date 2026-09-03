@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Monster Plants Manager",
+    "slug": "monster-plants-manager",
+    "scheme": "monsterplantsmanager",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#f7d268"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "server"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "fefc6153-b8ba-4cf3-9ce9-b94d1f8679e0"
+      }
+    },
+    "owner": "anabeatrizjbsan"
+  }
+}
