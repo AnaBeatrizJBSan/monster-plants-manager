@@ -40,8 +40,8 @@ export async function fetchMonsterPlantsFromHabbo(): Promise<MonsterPlant[]> {
       petsApi.listHolders(
         wellbeingVariableName,
         UserTargetKind.Pets,
-        OrderBy.Value,
-        OrderDir.Ascending,
+        OrderBy.UpdateTime,
+        OrderDir.Descending,
         pageIndex + 1,
         holdersPageSize,
       ),
