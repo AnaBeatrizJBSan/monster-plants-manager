@@ -2,6 +2,7 @@ import { Image } from "expo-image";
 import { Text, View } from "react-native";
 
 import { formatDurationFromSeconds } from "@/lib/formatters";
+import { getMonsterPlantImage } from "@/lib/monster-plant-images";
 import type { MonsterPlant } from "@/types/monster-plant";
 
 import { styles } from "./monster-plant-card.style";
@@ -21,8 +22,8 @@ export function MonsterPlantCard({ plant }: MonsterPlantCardProps) {
 
       <View style={styles.content}>
         <Image
-          source={plant.imageUrl}
-          contentFit="cover"
+          source={getMonsterPlantImage(plant.id, plant.imageUrl)}
+          contentFit="scale-down"
           style={styles.image}
         />
 

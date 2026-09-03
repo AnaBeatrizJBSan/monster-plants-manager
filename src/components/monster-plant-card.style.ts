@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     borderColor: "#7bcf46",
     borderRadius: 18,
     borderWidth: 3,
-    height: 180,
+    height: 80,
     width: "100%",
   },
   wellbeingPanel: {
