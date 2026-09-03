@@ -38,6 +38,33 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
+  searchCard: {
+    backgroundColor: "#fff5d5",
+    borderColor: "#8e5317",
+    borderCurve: "continuous",
+    borderRadius: 22,
+    borderWidth: 3,
+    gap: 8,
+    padding: 14,
+  },
+  searchLabel: {
+    color: "#613000",
+    fontSize: 13,
+    fontWeight: "800",
+    letterSpacing: 0.7,
+    textTransform: "uppercase",
+  },
+  searchInput: {
+    backgroundColor: "#fffdf4",
+    borderColor: "#d49a32",
+    borderCurve: "continuous",
+    borderRadius: 12,
+    borderWidth: 2,
+    color: "#492400",
+    fontSize: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+  },
   statusCard: {
     backgroundColor: "#fff5d5",
     borderColor: "#8e5317",
@@ -67,5 +94,18 @@ export const styles = StyleSheet.create({
   errorText: {
     color: "#6e1e00",
     fontSize: 14,
+  },
+  emptyCard: {
+    backgroundColor: "#fff5d5",
+    borderColor: "#8e5317",
+    borderCurve: "continuous",
+    borderRadius: 22,
+    borderWidth: 3,
+    padding: 20,
+  },
+  emptyText: {
+    color: "#613000",
+    fontSize: 16,
+    textAlign: "center",
   },
 });

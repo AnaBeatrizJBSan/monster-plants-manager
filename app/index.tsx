@@ -1,5 +1,6 @@
 import { Stack } from "expo-router";
-import { ScrollView, Text, View } from "react-native";
+import { useState } from "react";
+import { ScrollView, Text, TextInput, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { MonsterPlantCard } from "@/components/monster-plant-card";
@@ -8,6 +9,11 @@ import { styles } from "@/screens/home/style";
 
 export default function HomeScreen() {
   const { data, error, isLoading, refetch, isRefetching } = useMonsterPlants();
+  const [searchQuery, setSearchQuery] = useState("");
+  const normalizedQuery = searchQuery.trim().toLocaleLowerCase();
+  const filteredPlants = data?.filter((plant) =>
+    plant.name.toLocaleLowerCase().includes(normalizedQuery),
+  );
 
   return (
     <>
@@ -47,6 +53,20 @@ export default function HomeScreen() {
           </Text>
         </LinearGradient>
 
+        <View style={styles.searchCard}>
+          <Text style={styles.searchLabel}>Find a monster plant</Text>
+          <TextInput
+            autoCapitalize="none"
+            autoCorrect={false}
+            clearButtonMode="while-editing"
+            onChangeText={setSearchQuery}
+            placeholder="Search by plant name"
+            placeholderTextColor="#9b7646"
+            style={styles.searchInput}
+            value={searchQuery}
+          />
+        </View>
+
         {isLoading ? (
           <View style={styles.statusCard}>
             <Text selectable style={styles.statusText}>
@@ -66,9 +86,17 @@ export default function HomeScreen() {
           </View>
         ) : null}
 
-        {data?.map((plant) => (
+        {filteredPlants?.map((plant) => (
           <MonsterPlantCard key={plant.id} plant={plant} />
         ))}
+
+        {data && filteredPlants?.length === 0 ? (
+          <View style={styles.emptyCard}>
+            <Text style={styles.emptyText}>
+              No monster plants match "{searchQuery}".
+            </Text>
+          </View>
+        ) : null}
       </ScrollView>
     </>
   );
