@@ -48,7 +48,7 @@ export async function fetchMonsterPlantsFromHabbo(): Promise<MonsterPlant[]> {
     ),
   );
 
-  return responses.flatMap((response) =>
+  const orderedPlants = responses.flatMap((response) =>
     response.items.flatMap((holder) => {
       if (!holder.pet) {
         return [];
@@ -58,14 +58,21 @@ export async function fetchMonsterPlantsFromHabbo(): Promise<MonsterPlant[]> {
 
       return [
         {
-          id: String(holder.pet.id),
-          name: holder.pet.name,
-          remainingWellbeingSeconds: Number.isSafeInteger(remainingWellbeingSeconds)
-            ? Math.max(remainingWellbeingSeconds, 0)
-            : 0,
-          imageUrl: `https://placehold.co/600x400/F4D36B/5A2A00?text=${encodeURIComponent(holder.pet.name)}`,
+          plant: {
+            id: String(holder.pet.id),
+            name: holder.pet.name,
+            remainingWellbeingSeconds: Number.isSafeInteger(remainingWellbeingSeconds)
+              ? Math.max(remainingWellbeingSeconds, 0)
+              : 0,
+            imageUrl: `https://placehold.co/600x400/F4D36B/5A2A00?text=${encodeURIComponent(holder.pet.name)}`,
+          },
+          updatedAt: holder.variable.updateTime,
         },
       ];
     }),
   );
+
+  return orderedPlants
+    .sort((left, right) => Date.parse(right.updatedAt) - Date.parse(left.updatedAt))
+    .map(({ plant }) => plant);
 }
